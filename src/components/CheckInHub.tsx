@@ -41,6 +41,8 @@ export function CheckInHub({
 
   // Show banner to existing users who enabled reminders but have no FCM token
   useEffect(() => {
+    // Guard for iOS Safari (non-PWA) where Notification API doesn't exist
+    if (typeof Notification === 'undefined') return;
     const prefs = loadNotificationPrefs();
     const alreadyDismissed = localStorage.getItem('mindcheck_notif_banner_dismissed');
     if (

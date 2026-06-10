@@ -87,7 +87,7 @@ export function BaselineScreen({ onStartNow, onLater, onBack, onRequestNotificat
                 // requestPermission() fires synchronously inside this handler — preserves user gesture
                 onRequestNotificationPermission().then(() => {
                   setPermissionRequested(true);
-                  setPermissionGranted(Notification.permission === 'granted');
+                  setPermissionGranted(typeof Notification !== 'undefined' && Notification.permission === 'granted');
                 });
               }}
               className="w-full py-4 bg-white/80 border-2 border-[#ffb757] text-[#8d654c] rounded-2xl font-semibold text-lg active:scale-[0.98] transition-transform flex items-center justify-center gap-2"
